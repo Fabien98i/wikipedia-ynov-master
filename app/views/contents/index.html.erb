@@ -1,0 +1,32 @@
+<p id="notice"> <%= notice %></p>
+
+<h1>Contents</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id du contenu | </th>
+      <th>Id de l'article | </th>
+      <th>Contenu de l'article |  </th>
+      <th>Date de création du contenu |  </th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contents.each do |content| %>
+      <tr>
+        <td><%= content.id %></td>
+        <td><%= content.article_id %></td>
+        <td><%= content.content %></td>
+        <td><%= content.created_at %></td>
+        <% logger.info content.article_id%>
+        <!-- <td><%= link_to 'Show', content %></td> -->
+        <!--<td><%= link_to 'Edit', edit_content_path(content) %></td> -->
+        <!--<td><%= link_to 'Destroy', content, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

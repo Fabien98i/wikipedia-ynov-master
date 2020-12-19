@@ -1,0 +1,2 @@
+module ArticleSessionHelper
+end

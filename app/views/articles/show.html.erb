@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title :</strong>
+  <%= @article.title %>
+
+  <strong>Contenu de l'article :</strong>
+  <%= @article.content %>
+
+  <strong>Edited by :</strong>
+  <%= @article.user.username + @article.user.name %>
+</p>
+<% if @article.user == @current_user %>
+  <%= link_to 'Edit Content', edit_article_path(@article) %> | 
+  <%= link_to 'Back', articles_path %>
+<% end %>
