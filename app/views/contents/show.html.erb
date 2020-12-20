@@ -5,6 +5,8 @@
   <table>
     <thead>
       <tr>
+        <th>Contents id</th>
+        <th>Article id</th>
         <th>Users id</th>
         <th>Users Name</th>
         <th>Contents</th>
@@ -15,9 +17,11 @@
     <tbody>
       <% @content.each do |content| %>
         <tr>
+          <td><%= content.id %></td>
+          <td><%= content.article_id %></td>
           <td><%= content.userid %></td>
           <td><%= content.username %></td>
-          <td><%= content.content %></td>
+          <td><%= markdown(content.content) %></td>
           <td><%= content.created_at%></td>
         </tr>
       <% end %>

@@ -4,4 +4,5 @@ class User < ApplicationRecord
     
     # 1 user = N articles
     has_many :articles
+    has_many :comments
 end

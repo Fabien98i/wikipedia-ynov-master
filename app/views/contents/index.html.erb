@@ -18,7 +18,7 @@
       <tr>
         <td><%= content.id %></td>
         <td><%= content.article_id %></td>
-        <td><%= content.content %></td>
+        <td><%= markdown(content.content) %></td>
         <td><%= content.created_at %></td>
         <% logger.info content.article_id%>
         <!-- <td><%= link_to 'Show', content %></td> -->

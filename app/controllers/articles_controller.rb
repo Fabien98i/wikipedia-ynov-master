@@ -1,12 +1,14 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-  before_action :autorize_autotification, only: [:new, :create, :edit, :destroy, :update]
+  before_action :autorize_autotification, only: [:new, :create, :edit, :destroy, :update, :new_comment, :create_comment]
   # before_action :redirect_user_article, only: [ :edit, :update, :destroy]
 
   # GET /articles
   # GET /articles.json
   def index
     @articles = Article.all
+    #@comments = Comment.all
+
   end
 
   # GET /articles/1
@@ -42,6 +44,10 @@ class ArticlesController < ApplicationController
           user_modification.update_attribute(:point, @current_user.point)
           user_modification.save
         end
+        # #on recupere l'id du commentaire 
+         @comment = Comment.new
+         @comment.article = @article
+        # @comment.save
 
         # #User.update(@current_user)
         # #@update_user.point = @current_point + @point
@@ -73,6 +79,7 @@ class ArticlesController < ApplicationController
         #recherche de l'utilisateur pour sauvegarder les modifications
         @users = User.where(id: @current_user.id)
         @users.each do |user_modification|
+
           user_modification.update_attribute(:point, @current_user.point)
           user_modification.save
         end
@@ -100,6 +107,38 @@ class ArticlesController < ApplicationController
     # end
   end
 
+  #gestion des commentaires : 
+  def index_comment
+    @comments = Comment.all
+  end
+
+  #comments new
+  def new_comment
+    @comment = Comment.new
+  end
+
+  #comments create
+  def create_comment
+    @comment = Comment.new(comment_params)
+    #@comment.article_id = @article.id
+
+    logger.info "Commentaire id: " + @comment.id.to_s
+    logger.info "Commentaire id: " + @comment.comment.to_s
+    logger.info "Commentaire user: " + @comment.user_id.to_s
+    logger.info "Commentaire article: " + @comment.article_id.to_s
+
+    if @comment.save
+        logger.info "Commentaire id: " + @comment.id.to_s
+        logger.info "Commentaire user: " + @comment.user_id.to_s
+        logger.info "Commentaire article: " + @comment.article_id.to_s
+        redirect_to '/articles'
+        else
+            redirect_to new_comment_path, notice: 'Error, comments invalid !'
+    end 
+  end
+
+
+
   # DELETE /articles/1
   # DELETE /articles/1.json
   def destroy
@@ -116,22 +155,26 @@ class ArticlesController < ApplicationController
       @article = Article.find(params[:id])
     end
 
-    # def redirect_user_article
-    #   if @current_user.id == @article.user.id
-    #     redirect_to action: 'show', id: @current_user.id
-    #   end 
-    # end
-
+    #authetifation user
     def autorize_autotification
       if @current_user.nil?
         redirect_to sign_in_path
       end
     end
 
-    
     # Only allow a list of trusted parameters through.
     def article_params
       params.require(:article).permit(:title, :content, :image)
     end
-    
+
+    #params of comments
+    def comment_params
+      params.require(:comment).permit(:comment, :article_id, :user_id)
+    end
+
+    # def redirect_user_article
+    #   if @current_user.id == @article.user.id
+    #     redirect_to action: 'show', id: @current_user.id
+    #   end 
+    # end
 end

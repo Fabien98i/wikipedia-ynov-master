@@ -10,7 +10,4 @@
   <strong>Edited by :</strong>
   <%= @article.user.username + @article.user.name %>
 </p>
-<% if @article.user == @current_user %>
-  <%= link_to 'Edit Content', edit_article_path(@article) %> | 
-  <%= link_to 'Back', articles_path %>
-<% end %>
+<%= link_to 'Back', articles_path %>

@@ -3,6 +3,7 @@ class Article < ApplicationRecord
     # 1 arctile = N contunus
     belongs_to :user
     has_many :contents
+    has_many :comments
 
     include ImageUploader::Attachment.new(:image)
     validates :title, presence: true
