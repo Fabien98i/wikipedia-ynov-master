@@ -1,15 +1,21 @@
-<main>
-    <%= form_for :login do |f| %>
-        <div>
-            <%= f.label :email %>
-            <%= f.text_field :email %>
+
+<h1>Connection : </h1>
+<main class="col-md-9 ml-sm-auto col-lg-12 px-5" style = "text-align: center">
+    <div class="card-group">
+        <div class="card" style="width: 15rem;">
+
+            <%= form_for :login do |f| %>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" style="background-color:#C3C4C4" > <%= f.label :email %> </li>
+                <li class="list-group-item"> <%= f.text_field :email %>> </li>
+            </ul>
+
+             <ul class="list-group list-group-flush">
+                <li class="list-group-item" style="background-color:#C3C4C4" > <%= f.label :password %> </li>
+                <li class="list-group-item"> <%= f.password_field :password %> </li>
+            </ul>
+            <%= f.submit %>
         </div>
-        <div>
-            <%= f.label :password %>
-            <%= f.password_field :password %>
-        </div>
-        <%= f.submit %>
     <% end %>
+</div>
 </main>
-<br> <br>
-<%= link_to 'New User', new_user_path %>

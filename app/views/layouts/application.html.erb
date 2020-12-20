@@ -1,28 +1,73 @@
+
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>Wikipedia</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</head>
 
-  <body>
-    <%= yield %>
+<body>
     <header>
-    <br>
-    <br>
-      <% if @current_user %>
-           <%= @current_user.name%>
-           <%= @current_user.username%> <br>
-           <%= link_to  "Sign out", '/sign_out', method: :delete %>
-           <%= link_to  "Articles", '/articles' %>
-           <%= link_to  "Show Top Users", '/points' %>
-           <% else %>
-           <%= link_to "Sign in", '/sign_in' %>
-      <% end %>
+        <div class="collapse" id="navbarToggleExternalContent">
+            <div class="bg-dark p-4">
+                <% if @current_user %>
+                    <h5 class="text-white h4"> <span class="navbar-brand mb-3 h1"> <%= @current_user.name%> <%= @current_user.username%> </span> </h5>
+                    <span class="navbar-brand mb-0 h3"> <%= link_to  "Deconnection", '/sign_out', method: :delete %> </span>
+                    <span class="navbar-brand mb-0 h3"> <%= link_to 'Mon compte', @current_user %> </span>
+                    <span class="navbar-brand mb-0 h3"> <%= link_to 'Editer mes informations', edit_user_path(@current_user) %> </span>
+                    <% else %>
+                        <span class="navbar-brand mb-0 h3"> <%= link_to "Sign in", '/sign_in' %> </span>
+                        <span class="navbar-brand mb-0 h3"> <%= link_to 'Create a new user', new_user_path %> </span>
+                <% end %>
+            </div>
+        </div>
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"> </span>
+                </button>
+                <%= image_tag("wiki_logo.png", width: 50, height: 50 ) %>
+                <h5 class="text-white h4"> Wikipedia Ynov </h5>
+            </div>
+        </nav>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                    <ul class="navbar-nav me-auto mb-1 mb-lg-0">
+                        <li class="nav-item">
+                            <%= link_to "Accueil", '/', class:"nav-link active" %>
+                        <li class="nav-item">
+                            <%= link_to "Liste des Articles ", '/articles' , class:"nav-link active" %>
+                        </li>
+                        <% if @current_user %>
+                             <%= link_to "Creer un article ", new_article_path , class:"nav-link active" %>
+                        <% end %>
+                        <li class="nav-item">
+                            <%= link_to 'Liste des Utilisateurs', users_path, class:"nav-link active" %>
+                        </li>
+                        <li class="nav-item">
+                            <%= link_to  "Show Top Users", '/points', class:"nav-link active" %>
+                        </li>
+                    </ul>
+                    <form class="d-flex" action="/search">
+                        <input class="form-control me-2" name="q" type="search" placeholder="Rechercher un titre d'article ... " aria-label="Search" style="width:500px; height:auto;">
+                        <button class="btn btn-outline-success" type="submit"> Rechercher </button>
+                    </form>
+                </div>
+            </div>
+        </nav>
     </header>
-  </body>
+    <%= yield %>
+</body>
+
 </html>
+

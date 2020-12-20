@@ -9,7 +9,7 @@ class SessionController < ApplicationController
         find = user && user.authenticate(auth_password)
         if find 
             session[:user_token] = user.id.to_s
-            redirect_to users_path
+            redirect_to '/'
         else
             redirect_to sign_in_path, notice: 'Compte introuvable'
         end

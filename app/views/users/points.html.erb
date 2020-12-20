@@ -2,14 +2,14 @@
 
 <h1>Top Users : </h1>
 
-<table>
+<table class="table table-success table-striped" >
   <thead>
     <tr>
+        <th>.</th>
         <th>Rang</th>
         <th>Name</th>
         <th>Username</th>
         <th>Nombre de points</th>
-        <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -17,14 +17,12 @@
   <% @count = 0 %>
     <% @users.each do |user| %>
       <tr>
-        <td><%= @count = @count + 1 %></td>
-        <td><%= user.name %></td>
-        <td><%= user.username %></td>
-        <td><%= user.point %></td>
+      <td> </td>
+        <td> <p style="color:#334F1"><%= @count = @count + 1 %></p></td>
+        <td> <p style="font:bold"><%= user.name %></p></td>
+        <td> <p><%= user.username %></p></td>
+        <td> <p style="color:red"> <%= user.point %> </p></td>
         <%# if @current_user == user %>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% #end %>
       </tr>
     <% end %>

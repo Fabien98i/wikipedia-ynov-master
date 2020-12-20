@@ -1,4 +1,6 @@
-<%= form_with(model: user, local: true) do |form| %>
+<main class="col-md-9 ml-sm-auto col-lg-12 px-5" style = "text-align: center">
+<div class="card-group">
+  <%= form_with(model: user, local: true) do |form| %>
   <% if user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -10,28 +12,30 @@
       </ul>
     </div>
   <% end %>
+  <div class="card" style="width: 15rem;">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item" style="background-color:#C3C4C4" > <%= form.label :name %> </li>
+      <li class="list-group-item"> <%= form.text_field :name %> </li>
+    </ul>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item" style="background-color:#C3C4C4" > <%= form.label :username %> </li>
+      <li class="list-group-item"> <%= form.text_field :username %> </li>
+    </ul>
+
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item" style="background-color:#C3C4C4" > <%= form.label :email %> </li>
+      <li class="list-group-item"> <%= form.text_field :email %> </li>
+    </ul>
+
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item" style="background-color:#C3C4C4" > <%= form.label :password %> </li>
+      <li class="list-group-item"> <%= form.text_field :password %> </li>
+    </ul>
   </div>
-
-  <div class="field">
-    <%= form.label :username %>
-    <%= form.text_field :username %>
-  </div>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
-
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.text_field :password %>
-  </div>
-
   <div class="actions">
     <%= form.submit %>
   </div>
-<% end %>
+  <% end %>
+</div>
+</main>

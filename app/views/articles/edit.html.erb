@@ -1,13 +1,15 @@
-<h1>Editing Article</h1>
+<h1>Editing Article : </h1>
+<h3> <%= @article.title %></h3>
 
 <%= form_for @article do |f| %>
-  <div>
-    <%= f.label :content %>
-    <%= f.text_area :content %>
-  </div>
-  <div>
+<div class="input-group mb-3">
+    <%= f.label :content,  class:"input-group-text" %>
+    <%= f.text_area :content , class:"form-control"%>
+</div>
+
+<div>
     <%= f.submit %>
-  </div>
+</div>
 <% end %>
 
 <%= link_to 'Show', @article %> |

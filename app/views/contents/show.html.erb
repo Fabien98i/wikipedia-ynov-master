@@ -1,32 +1,21 @@
   <p id="notice"><%= notice %></p>
-  <h1> All modifications about this Article  </h1>
+  <h1> All modifications about this Article </h1>
 
-  
-  <table>
-    <thead>
-      <tr>
-        <th>Contents id</th>
-        <th>Article id</th>
-        <th>Users id</th>
-        <th>Users Name</th>
-        <th>Contents</th>
-        <th>Updated_at</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @content.each do |content| %>
-        <tr>
-          <td><%= content.id %></td>
-          <td><%= content.article_id %></td>
-          <td><%= content.userid %></td>
-          <td><%= content.username %></td>
-          <td><%= markdown(content.content) %></td>
-          <td><%= content.created_at%></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-<%= link_to 'Edit the content', edit_content_path(@content) %> |
-<%= link_to 'Back', contents_path %>
+  <main class="col-md-9 ml-sm-auto col-lg-12 px-5">
+      <div class="card-group">
+            <% @content.each do |content| %>
+                <div class="card" style="width: 20rem;">
+                  <div class="card-body" style="background-color:#4E7872" >
+                    <p class="card-text"> <%= markdown(content.content) %> </p>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item" style="background-color:#38C8B5" > <%= content.username %> </li>
+                    <li class="list-group-item" style="background-color:#9EECE1" > <%= content.created_at%> </li>
+                  </ul>
+                </div>
+            <% end %>
+      </div>
+      <br> <br>
+      <%= link_to 'Back', articles_path %>
+      <%= link_to 'Show All Contents', contents_path %>
+  </main>

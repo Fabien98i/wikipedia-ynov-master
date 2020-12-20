@@ -1,17 +1,22 @@
-<h1>Editing User</h1>
+<h1>Editing User Informations </h1>
+<main class="col-md-9 ml-sm-auto col-lg-12 px-5" style = "text-align: center">
 
+<div class="card" style="width: 15rem;">
 <%= form_for @user do |f| %>
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item" style="background-color:#C3C4C4" > <%= f.label :email %> </li>
+      <li class="list-group-item"> <%= f.text_field :email %> </li>
+    </ul>
 
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.text_field :password %>
-  </div>
-
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item" style="background-color:#C3C4C4" > <%= f.label :password %> </li>
+      <li class="list-group-item"> <%= f.text_field :password %> </li>
+    </ul>
+</div>
+</main>
+<br>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+

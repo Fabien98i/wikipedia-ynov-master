@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :contents
   resources :articles
   resources :users
+
+ root 'accueil#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get '/sign_in', to: 'session#index_sign_in'
   post '/sign_in', to: 'session#sign_in'
@@ -18,4 +20,5 @@ Rails.application.routes.draw do
   get  '/articles/comments/new/:id', to: 'articles#new_comment', as: 'new_comment'
   post '/articles/comments', to: 'articles#create_comment'
   get  '/articles/comments', to: 'articles#index_comment', as: 'comments'
+  get '/search', to: 'articles#search'
 end
