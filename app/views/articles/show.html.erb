@@ -1,12 +1,21 @@
-<p id="notice"><%= notice %></p>
+<%= notice %>
 
-<p>
-  <strong>Title :</strong>
-  <%= @article.title %>
+<h1> Arctile Created :  </h1>
+<main class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card" style="width: 30rem;">
+                <%= image_tag @article.image_url, height: 300, width: 478  %>
+                <div class="card-body" style="background-color:#93D09D" >
+                    <h5 class="card-title"> <%= @article.title %> </h5>
+                    <p class="card-text"> <%= markdown(@article.content) %> </p>
+                </div>
 
-  <strong>Contenu de l'article :</strong>
-  <%= @article.content %>
-
-  <strong>Edited by :</strong>
-  <%= @article.user.username + @article.user.name %>
-</p>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"> Edited by : <%= @article.user.name %> </li>
+                    <li class="list-group-item"> Created at: <%= @article.created_at.strftime('%d-%m-%Y') %></li>
+                </ul>
+            </div>
+        </div>
+    <div>
+</main>

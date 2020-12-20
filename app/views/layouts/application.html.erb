@@ -22,7 +22,7 @@
                     <span class="navbar-brand mb-0 h3"> <%= link_to 'Mon compte', @current_user %> </span>
                     <span class="navbar-brand mb-0 h3"> <%= link_to 'Editer mes informations', edit_user_path(@current_user) %> </span>
                     <% else %>
-                        <span class="navbar-brand mb-0 h3"> <%= link_to "Sign in", '/sign_in' %> </span>
+                        <span class="navbar-brand mb-0 h3"> <%= link_to "Connexion", '/sign_in' %> </span>
                         <span class="navbar-brand mb-0 h3"> <%= link_to 'Create a new user', new_user_path %> </span>
                 <% end %>
             </div>

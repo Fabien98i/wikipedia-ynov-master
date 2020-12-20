@@ -51,6 +51,13 @@ class ArticlesController < ApplicationController
          @comment = Comment.new
          @comment.article = @article
         # @comment.save
+        @content = Content.new
+        @content.userid = @current_user.id
+        @content.username = @current_user.username
+        @content.article_id = @article.id
+        @content.content = @article.content
+        @content.save
+
 
         # #User.update(@current_user)
         # #@update_user.point = @current_point + @point
